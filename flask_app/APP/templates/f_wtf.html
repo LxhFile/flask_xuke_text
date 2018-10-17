@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{#    原生表单渲染#}
+{#    判断是否有错误#}
+{% if form.errors %}
+    {#        可以存放多个错误信息，所以它是个列表，用索引取值#}
+    {{ form.errors[0] }}
+{% endif %}
+<form action="{{ url_for('f_wtf.wtf') }}" method="post">
+    {#        {{ form.hidden_tag }} 里面存放的是csrf_token，可以使用，跨站请求伪造，用来防止伪造的#}
+    {{ form.csrf_token }} {# 这个也就是单独从hidden_tag拿出来的,hidden_tag 是可以隐藏的，这里使用这个来了解里面的加密#}
+    {{ form.name.label() }}{{ form.name(id='xx', class='yyy') }}
+    <hr>
+    {{ form.submit() }}
+</form>
+</body>
+</html>

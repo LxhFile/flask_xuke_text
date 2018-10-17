@@ -6,11 +6,17 @@
 # 导入蓝本
 from .user_ import user
 from .moment_time import moment
+from .log_original_form import o_form
+from .f_wtf import f_wft
+
 
 # 装蓝本的元组
 BASE_BLUEPRINT = (
     (user,'/user'),
     (moment,'/moment'),
+    (o_form,'/o_form'),
+    (f_wft,'/f_wtf'),
+
 )
 
 # 循环便利存放蓝本的元组

@@ -10,11 +10,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 通用配置
 class Config(object):
-    # 通用配置，大写
-    # 密钥 每次调用随机生成32位的密钥  , 只有用到session的时候才用启用，用session之前先要进行redis的开启
-    SECRET_KEY = os.urandom(32)
-    # SECRET_KEY = '123456'
-
+    # 通用配置，大写，必须
+    CSRF_ENABLED = True
+    # 密钥 每次调用随机生成32位的密钥  , 不只有用到session的时候才用启用，用session之前先要进行redis的开启
+    # SECRET_KEY = os.urandom(32)
+    SECRET_KEY = '123456'
+    '''
+    大意是secret_key设置成os.urandom(24)的话，
+    它的值就会变化，而一旦发生变化，
+    原来的cookie中的token就不能被新的secret_key验证，
+    于是cookie就失效了，相应的session存的内容也就没了，
+    所以会再次提示用户登录。因此以后secret_key最好设置成一个固定的字符串！
+    '''
+    
 
     # redis保存session
     # SECRET_TYPE = 'redis'

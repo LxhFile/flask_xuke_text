@@ -4,8 +4,7 @@
 # @FILE     : moment_time.py
 
 from flask import Blueprint, render_template
-from datetime import datetime
-
+from datetime import datetime, timedelta
 
 moment = Blueprint('moment',__name__)
 
@@ -17,5 +16,8 @@ def timeies():
     return render_template('moment.html',current_time=current_time)
 
 @moment.route('/bootstrap_time/')
-def add_time():
-    pass
+def bootstrap_time():
+    # -3600 向前推迟一个小时（过去）
+    # 3600 向后推一个小时（未来）
+    current_time = datetime.utcnow() + timedelta(seconds=-3600)
+    return render_template('bootstrap.html', current_time=current_time)

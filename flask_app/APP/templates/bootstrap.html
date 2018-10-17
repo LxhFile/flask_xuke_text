@@ -1,0 +1,24 @@
+{% extends 'bace.html' %}
+{#{% extends 'bootstrap/base.html' %}#}
+
+{% block content %}
+    <div align='center'>
+        时间日期：{{ moment(current_time).format('LLL') }}
+        <hr>
+        私人定制：{{ moment(current_time).format('YYYY-MM-DD') }}
+        <hr>
+        发表时间：{{ moment(current_time).fromNow() }}
+        <hr>
+    </div>
+
+{% endblock %}
+
+
+
+{# 导入js #}
+{% block scripts %}
+    {{ super() }}
+{#    改写成中文,默认为英文 #}
+    {{ moment.include_moment()}}
+    {{ moment.locale('zh-CN') }}
+{% endblock %}
